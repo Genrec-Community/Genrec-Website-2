@@ -1,0 +1,52 @@
+/* DESIGN TOKENS: GenRec AI. Roles, not hues. */
+
+:root {
+  --c-bg: #eceae3;
+  --c-fg: #14171a;
+  --c-muted: #565b5d;
+  --c-line: rgb(20 23 26 / 0.16);
+  --c-accent: #e23a1f;
+  --c-accent-dark: #c92f14;
+  --c-accent-soft: rgb(226 58 31 / 0.12);
+  --c-panel: #171a1c;
+  --c-panel-ink: #eceae3;
+  --c-panel-muted: #a9aba6;
+  --c-panel-line: rgb(236 234 227 / 0.16);
+  --c-curtain: #171a1c;
+
+  --f-display: 'Clash Display', 'Arial Black', system-ui, sans-serif;
+  --f-body: 'General Sans', system-ui, -apple-system, sans-serif;
+  --f-mono: 'Martian Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+  --t-mega: clamp(3.3rem, min(14.5vw, 19vh), 14rem);
+  --t-xl: clamp(2.5rem, 1.2rem + 5.4vw, 6.5rem);
+  --t-l: clamp(1.7rem, 1.2rem + 2.1vw, 3.1rem);
+  --t-m: clamp(1.2rem, 1.06rem + 0.55vw, 1.6rem);
+  --t-body: clamp(1rem, 0.97rem + 0.16vw, 1.1rem);
+  --t-s: 0.875rem;
+  --t-xs: 0.75rem;
+  --t-2xs: 0.6875rem;
+
+  --u: clamp(0.5rem, 0.38rem + 0.55vw, 0.95rem);
+  --gutter: clamp(1.05rem, 0.6rem + 2.6vw, 3.5rem);
+  --header-h: 4.25rem;
+  --cols: 12;
+
+  --radius: 0px;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-inout: cubic-bezier(0.87, 0, 0.13, 1);
+  --ease-soft: cubic-bezier(0.165, 0.84, 0.44, 1);
+
+  --z-gl: 0;
+  --z-content: 1;
+  --z-header: 50;
+  --z-curtain: 90;
+  --z-loader: 100;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --header-h: 3.75rem;
+  }
+}
