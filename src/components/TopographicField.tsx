@@ -1,7 +1,8 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { LottieLight, type LottieHandle } from 'lottie-react';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import type { DotLottie } from '@lottiefiles/dotlottie-react';
 
 type Props = {
   className?: string;
@@ -10,7 +11,6 @@ type Props = {
 
 export function TopographicField({ className, tone = 'ink' }: Props) {
   const hostRef = useRef<HTMLDivElement>(null);
-  const lottieRef = useRef<LottieHandle>(null);
   const [visible, setVisible] = useState(false);
   const [reduced, setReduced] = useState(false);
 
@@ -20,19 +20,32 @@ export function TopographicField({ className, tone = 'ink' }: Props) {
 
     setReduced(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 
+    const show = () => {
+      const idle = window.requestIdleCallback;
+      if (idle) idle(() => setVisible(true), { timeout: 1800 });
+      else window.setTimeout(() => setVisible(true), 900);
+    };
+
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries.some((e) => e.isIntersecting)) {
-          setVisible(true);
+          show();
           observer.disconnect();
         }
       },
-      { rootMargin: '400px 0px' },
+      { rootMargin: '250px 0px' },
     );
     observer.observe(host);
 
     return () => observer.disconnect();
   }, []);
+
+  const onRef = (instance: DotLottie | null) => {
+    if (!instance || !reduced) return;
+    const settle = () => instance.setFrame(instance.totalFrames - 1);
+    if (instance.isLoaded) settle();
+    else instance.addEventListener('load', settle);
+  };
 
   return (
     <div
@@ -41,17 +54,13 @@ export function TopographicField({ className, tone = 'ink' }: Props) {
       aria-hidden="true"
     >
       {visible ? (
-        <LottieLight
-          lottieRef={lottieRef}
-          src="/lottie/topographic.json"
+        <DotLottieReact
+          src="/lottie/topographic.lottie"
           loop={false}
           autoplay={!reduced}
-          subscriptions={{
-            ready: () => {
-              if (reduced) lottieRef.current?.seek(124);
-            },
-          }}
-          rendererSettings={{ preserveAspectRatio: 'xMidYMid slice' }}
+          dotLottieRefCallback={onRef}
+          layout={{ fit: 'cover', align: [0.5, 0.5] }}
+          renderConfig={{ autoResize: true, freezeOnOffscreen: true, quality: 75, devicePixelRatio: 1.5 }}
         />
       ) : null}
     </div>

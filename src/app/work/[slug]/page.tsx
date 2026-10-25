@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { Arrow } from '@/components/Arrow';
 import { BrowserFrame, PhoneFrame } from '@/components/BrowserFrame';
 import { ReportVisual } from '@/components/ReportVisual';
+import { ScrollExpand } from '@/components/ScrollExpand';
 import { nextProject, projectBySlug, projects } from '@/data/site';
 
 type Props = { params: Promise<{ slug: string }> };
@@ -115,18 +116,20 @@ export default async function CasePage({ params }: Props) {
       </header>
 
       <div className="case-cover">
-        {project.visual === 'report' ? (
-          <ReportVisual />
-        ) : project.cover ? (
-          <BrowserFrame
-            src={project.cover.src}
-            alt={project.cover.alt}
-            url={project.live?.href.replace(/^https?:\/\//, '').replace(/\/$/, '')}
-            priority
-            sizes="92vw"
-            className="case-cover__frame"
-          />
-        ) : null}
+        <ScrollExpand className="case-cover__scroll">
+          {project.visual === 'report' ? (
+            <ReportVisual />
+          ) : project.cover ? (
+            <BrowserFrame
+              src={project.cover.src}
+              alt={project.cover.alt}
+              url={project.live?.href.replace(/^https?:\/\//, '').replace(/\/$/, '')}
+              priority
+              sizes="92vw"
+              className="case-cover__frame"
+            />
+          ) : null}
+        </ScrollExpand>
         {project.cover ? <p className="case-cover__cap">{project.cover.caption}</p> : null}
       </div>
 

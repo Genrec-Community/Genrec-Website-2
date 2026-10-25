@@ -1,10 +1,21 @@
+'use client';
+
 import Link from 'next/link';
+import { useRef, type PointerEvent } from 'react';
 import type { Project } from '@/data/site';
 import { BrowserFrame } from './BrowserFrame';
 import { ReportVisual } from './ReportVisual';
 import { Arrow } from './Arrow';
 
 export function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const mediaRef = useRef<HTMLDivElement>(null);
+  const onMove = (event: PointerEvent<HTMLAnchorElement>) => {
+    const media = mediaRef.current;
+    if (!media) return;
+    const rect = media.getBoundingClientRect();
+    media.style.setProperty('--sx', `${event.clientX - rect.left}px`);
+    media.style.setProperty('--sy', `${event.clientY - rect.top}px`);
+  };
   const style = {
     '--accent': project.accent,
     '--accent-rgb': project.accentRgb,
@@ -16,9 +27,12 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
       href={`/work/${project.slug}`}
       className={`pcard ${index % 2 ? 'pcard--offset' : ''}`}
       style={style}
+      onPointerMove={onMove}
+      data-reveal="up"
+      data-delay={String(index * 0.07)}
       aria-label={`${project.title}, ${project.sector}, ${project.year}`}
     >
-      <div className="pcard__media">
+      <div className="pcard__media" ref={mediaRef}>
         <span className="pcard__index">{String(index + 1).padStart(2, '0')}</span>
         {project.visual === 'report' ? (
           <div className="pcard__report">
