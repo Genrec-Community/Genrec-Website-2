@@ -3,11 +3,16 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Arrow } from '@/components/Arrow';
 import { BrowserFrame, PhoneFrame } from '@/components/BrowserFrame';
+import { JsonLd } from '@/components/JsonLd';
+import PageReady from '@/components/PageReady';
 import { ReportVisual } from '@/components/ReportVisual';
 import { ScrollExpand } from '@/components/ScrollExpand';
-import { nextProject, projectBySlug, projects } from '@/data/site';
+import { nextProject, projectBySlug, projects, site } from '@/data/site';
+import { caseStudySchema } from '@/lib/seo';
 
 type Props = { params: Promise<{ slug: string }> };
+
+export const instant = false;
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -17,23 +22,43 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const project = projectBySlug(slug);
   if (!project) return { title: 'Not found' };
+  const path = `/work/${project.slug}`;
+  const title = `${project.title} case study`;
+  const ogTitle = `${project.title} — ${project.tagline}`;
   return {
-    title: project.title,
+    title,
     description: project.summary,
-    alternates: { canonical: `/work/${project.slug}` },
+    keywords: [
+      project.title,
+      project.sector,
+      'case study',
+      'product design',
+      'software engineering',
+      ...project.stack.split(' · '),
+    ],
+    authors: [{ name: site.name, url: site.url }],
+    alternates: { canonical: path },
     openGraph: {
-      title: project.title,
+      title: ogTitle,
       description: project.summary,
-      url: `/work/${project.slug}`,
+      url: path,
+      siteName: site.name,
+      locale: 'en_IN',
       type: 'article',
       images: [
         {
-          url: '/og.png',
+          url: `/og/${project.slug}.png`,
           width: 1200,
           height: 630,
           alt: `${project.title}, a case study by GenRec AI`,
         },
       ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: ogTitle,
+      description: project.summary,
+      images: [`/og/${project.slug}.png`],
     },
   };
 }
@@ -60,7 +85,7 @@ export default async function CasePage({ params }: Props) {
   } as React.CSSProperties;
 
   return (
-    <article className="case" style={style}>
+    <article className="case" style={style} aria-labelledby="case-title">
       <header className="case-head">
         <div className="case-head__top">
           <Link href="/work" className="case-head__back">
@@ -74,7 +99,7 @@ export default async function CasePage({ params }: Props) {
         </div>
 
         <div className="case-head__main">
-          <h1 className="case-head__title" data-reveal="fade" data-intro>
+          <h1 className="case-head__title" id="case-title" data-reveal="fade" data-intro>
             {project.wordmark}
             <span className="case-head__dot">.</span>
           </h1>
@@ -212,13 +237,14 @@ export default async function CasePage({ params }: Props) {
         className="case-next"
         href={`/work/${next.slug}`}
         style={nextStyle}
-        aria-label={`Next case: ${next.title}`}
       >
         <span className="case-next__label">Next case</span>
         <span className="case-next__title">{next.title}</span>
         <Arrow className="case-next__arrow" />
         <span className="case-next__tagline">{next.tagline}</span>
       </Link>
+      <JsonLd data={caseStudySchema(project)} />
+      <PageReady />
     </article>
   );
 }

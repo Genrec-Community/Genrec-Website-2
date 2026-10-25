@@ -741,15 +741,15 @@ body {
   gap: 1rem;
   padding-block: 3rem;
   border-top: 1px solid var(--c-panel-line);
-  opacity: 0.38;
+  opacity: 1;
   transition: opacity 0.5s var(--ease-soft);
 }
-.chapter[data-active='true'] { opacity: 1; }
+.chapter[data-active='false'] h3 { color: #8a8e8a; }
 .chapter__num {
   font-family: var(--f-mono);
   font-size: var(--t-2xs);
   letter-spacing: 0.08em;
-  color: var(--c-accent);
+  color: #ff5a3d;
 }
 .chapter h3 {
   font-family: var(--f-display);

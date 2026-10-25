@@ -7,7 +7,7 @@ import { BrowserFrame } from './BrowserFrame';
 import { ReportVisual } from './ReportVisual';
 import { Arrow } from './Arrow';
 
-export function ProjectCard({ project, index }: { project: Project; index: number }) {
+export function ProjectCard({ project, index, priority }: { project: Project; index: number; priority?: boolean }) {
   const mediaRef = useRef<HTMLDivElement>(null);
   const onMove = (event: PointerEvent<HTMLAnchorElement>) => {
     const media = mediaRef.current;
@@ -44,6 +44,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
             alt={project.cover.alt}
             url={project.live?.href.replace(/^https?:\/\//, '').replace(/\/$/, '')}
             sizes="(max-width: 900px) 100vw, 46vw"
+            priority={priority}
           />
         ) : null}
         <span className="pcard__status">{project.status}</span>

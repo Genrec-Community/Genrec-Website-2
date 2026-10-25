@@ -5,16 +5,20 @@ import '@/styles/site.css';
 import '@/styles/redesign.css';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { JsonLd } from '@/components/JsonLd';
 import { Motion } from '@/components/Motion';
 import { site } from '@/data/site';
+import { organizationSchema, websiteSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} / ${site.role}`,
+    default: `${site.name} — ${site.role} for software that holds`,
     template: `%s / ${site.name}`,
   },
-  description: site.description,
+  description:
+    'GenRec AI is a product studio in Tamil Nadu. We design and engineer AI products, web apps and internal tools for teams that cannot afford a bad day.',
+  category: 'technology',
   applicationName: site.name,
   keywords: [
     'product studio',
@@ -30,16 +34,25 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     siteName: site.name,
-    title: `${site.name} / ${site.role}`,
-    description: site.description,
-    url: site.url,
+    title: `${site.name} — ${site.role} for software that holds`,
+    description:
+      'A product studio in Tamil Nadu designing and engineering AI products, web apps and internal tools for teams that cannot afford a bad day.',
+    url: '/',
     locale: 'en_IN',
-    images: [{ url: '/og.png', width: 1200, height: 630, alt: `${site.name}, ${site.role}` }],
+    images: [
+      {
+        url: '/og.png',
+        width: 1200,
+        height: 630,
+        alt: 'GenRec AI, product studio for software that holds',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${site.name} / ${site.role}`,
-    description: site.description,
+    title: `${site.name} — ${site.role} for software that holds`,
+    description:
+      'A product studio in Tamil Nadu designing and engineering AI products, web apps and internal tools for teams that cannot afford a bad day.',
     images: ['/og.png'],
   },
   robots: { index: true, follow: true },
@@ -52,20 +65,9 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-const jsonLd = {
+const siteSchema = {
   '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: site.name,
-  url: site.url,
-  logo: `${site.url}/icon.svg`,
-  email: site.email,
-  description: site.description,
-  address: {
-    '@type': 'PostalAddress',
-    addressRegion: 'Tamil Nadu',
-    addressCountry: 'IN',
-  },
-  sameAs: site.socials.map((s) => s.href),
+  '@graph': [organizationSchema, websiteSchema],
 };
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {
@@ -111,10 +113,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
 
         <Footer />
 
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <JsonLd data={siteSchema} />
         <Motion />
       </body>
     </html>

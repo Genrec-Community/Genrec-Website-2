@@ -1,0 +1,43 @@
+# GenRec AI
+
+> GenRec AI is a product studio in Tamil Nadu, India. We design and engineer AI products, web apps and internal tools for teams that cannot afford a bad day. Strategy, interface and engineering stay in one small room.
+
+GenRec AI was founded in 2023 and works as a three-person studio. We take one build at a time from the first failure-mode workshop to the final deploy, and stay for the first weeks after launch. Our work includes an open-source agentic database analyst, an AI study platform with more than 12,000 learners, QR ordering software for restaurants, and a faculty feedback system for VSB Engineering College.
+
+## Pages
+
+- [Home](https://www.genrecai.com/): What GenRec AI builds, the six disciplines we carry, and how we work.
+- [Work](https://www.genrecai.com/work): Four case studies with real users, live products and measurable outcomes.
+- [SelectStar case study](https://www.genrecai.com/work/selectstar): An open-source agentic database analyst that answers questions in plain English with a six-agent graph instead of a ReAct loop.
+- [LuminaIQ case study](https://www.genrecai.com/work/luminaiq): An AI study platform that turns a textbook into a prerequisite-ordered learning path, cited answers, quizzes, notes and flashcards.
+- [Tabble case study](https://www.genrecai.com/work/tabble): QR ordering and a live kitchen display for restaurants, with no guest app and no order re-entry.
+- [VSB Feedback case study](https://www.genrecai.com/work/vsb-feedback): A faculty feedback system for VSB Engineering College with student, HOD and administrator roles.
+- [Studio](https://www.genrecai.com/studio): The three people, the four-step process and what we need from a client.
+
+## Services
+
+- Product strategy: scope, sequence and the one decision that makes the build smaller.
+- Interface design: screens that hold up on a phone, a tablet and a bad connection.
+- Full-stack engineering: web apps, APIs and the plumbing between them.
+- AI systems: retrieval, evaluation and human review, with models where they earn their place.
+- Data and infrastructure: schemas, queues, deploys and the quiet parts that keep a system up.
+- Rescue and handover: taking over a stalled build, or leaving one a team can run.
+
+## Key facts
+
+- Founded: 2023
+- Team: three people, based in Tamil Nadu, India, working worldwide.
+- Focus: AI products, web applications, internal tools and data systems.
+- SelectStar is live and open source under the MIT licence.
+- LuminaIQ has more than 12,000 learners and 50,000 documents turned into study kits.
+- Tabble is live with a founding cohort of restaurants.
+- VSB Feedback runs in production at VSB Engineering College.
+
+## Contact
+
+- Email: hello@genrecai.com
+- LinkedIn: https://www.linkedin.com/company/genrecai
+- Location: Tamil Nadu, India
+- Working: worldwide
+
+Last updated: 2026-10-25

@@ -11,7 +11,27 @@ export function Engine({ setup }: { setup?: () => void }) {
   const first = useRef(true);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => { boot(setup); }, []);
+  useEffect(() => {
+    let frame = 0;
+    let timer = 0;
+    let started = false;
+    const start = () => {
+      if (started) return;
+      started = true;
+      window.clearTimeout(timer);
+      window.removeEventListener('genrec:page-ready', start);
+      frame = requestAnimationFrame(() => boot(setup));
+    };
+    const w = window as typeof window & { __genrecPageReady?: boolean };
+    if (w.__genrecPageReady) start();
+    else window.addEventListener('genrec:page-ready', start);
+    timer = window.setTimeout(start, 2500);
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener('genrec:page-ready', start);
+      cancelAnimationFrame(frame);
+    };
+  }, []);
 
   useEffect(() => {
     const onClick = async (e: MouseEvent) => {

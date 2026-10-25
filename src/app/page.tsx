@@ -2,9 +2,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Arrow } from '@/components/Arrow';
 import { Approach } from '@/components/Approach';
+import { JsonLd } from '@/components/JsonLd';
+import PageReady from '@/components/PageReady';
 import { LoadBeam } from '@/components/LoadBeam';
 import { WorkIndex } from '@/components/WorkIndex';
 import { capabilities, projects, site } from '@/data/site';
+import { homeSchema } from '@/lib/seo';
 
 export default function HomePage() {
   return (
@@ -43,6 +46,7 @@ export default function HomePage() {
           <h1 className="hero__title" id="hero-title" data-reveal="fade" data-intro data-delay="0.1">
             We build
             <br />
+            {' '}
             <span className="hero__line">
               what holds<span className="hero__dot">.</span>
             </span>
@@ -74,6 +78,7 @@ export default function HomePage() {
           <h2 className="section-head__title section-head__title--xl" id="work-title" data-reveal="up">
             Made to be
             <br />
+            {' '}
             depended on<span className="dot">.</span>
           </h2>
           <p className="section-head__note">
@@ -109,6 +114,7 @@ export default function HomePage() {
             <h2 className="cap__title" id="capabilities-title" data-reveal="up">
               Six disciplines.
               <br />
+              {' '}
               One team<span className="dot">.</span>
             </h2>
             <p className="cap__note">
@@ -156,6 +162,8 @@ export default function HomePage() {
           </Link>
         </div>
       </section>
+      <JsonLd data={homeSchema} />
+      <PageReady />
     </>
   );
 }

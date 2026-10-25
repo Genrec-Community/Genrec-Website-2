@@ -2,13 +2,47 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Arrow } from '@/components/Arrow';
+import { JsonLd } from '@/components/JsonLd';
+import PageReady from '@/components/PageReady';
 import { needs, site, team } from '@/data/site';
+import { studioSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Studio',
   description:
-    'GenRec AI is a product studio in Tamil Nadu, India. Three people who scope, design and engineer one build at a time.',
+    'GenRec AI is a product studio in Tamil Nadu, India. Three people who scope, design and engineer one build at a time, from first sketch to final deploy.',
+  keywords: [
+    'GenRec AI studio',
+    'product studio Tamil Nadu',
+    'product strategy',
+    'interface design',
+    'full-stack engineering',
+    'AI systems',
+    'software rescue',
+  ],
   alternates: { canonical: '/studio' },
+  openGraph: {
+    type: 'website',
+    title: 'Small by design — the GenRec AI studio',
+    description:
+      'Three people who stay on the build from the first sketch to the last deploy. Product strategy, interface design, engineering and AI systems.',
+    url: '/studio',
+    images: [
+      {
+        url: '/og/studio.png',
+        width: 1200,
+        height: 630,
+        alt: 'The GenRec AI studio',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Small by design — the GenRec AI studio',
+    description:
+      'Three people who scope, design and engineer one build at a time, from first sketch to final deploy.',
+    images: ['/og/studio.png'],
+  },
 };
 
 const process = [
@@ -50,6 +84,7 @@ export default function StudioPage() {
           <h1 id="studio-title" data-reveal="fade" data-intro>
             Small by
             <br />
+            {' '}
             design<span className="dot">.</span>
           </h1>
           <div className="studio-hero__foot">
@@ -118,6 +153,7 @@ export default function StudioPage() {
           <h2 className="section-head__title" id="team-title" data-reveal="up">
             The people
             <br />
+            {' '}
             on the build<span className="dot">.</span>
           </h2>
           <p className="section-head__note">
@@ -143,6 +179,7 @@ export default function StudioPage() {
           <h2 className="section-head__title" id="process-title" data-reveal="up">
             Four moves,
             <br />
+            {' '}
             no theatre<span className="dot">.</span>
           </h2>
           <p className="section-head__note">
@@ -167,6 +204,7 @@ export default function StudioPage() {
           <h2 className="section-head__title" id="needs-title" data-reveal="up">
             What we need
             <br />
+            {' '}
             from you<span className="dot">.</span>
           </h2>
           <p className="section-head__note">
@@ -193,6 +231,8 @@ export default function StudioPage() {
           </a>
         </div>
       </section>
+      <JsonLd data={studioSchema} />
+      <PageReady />
     </>
   );
 }

@@ -681,14 +681,15 @@
 /* ---------- Case studies ---------- */
 
 .case {
+  --case-ink: #f7f3ea;
   padding-top: 0;
   background: var(--c-bg);
 }
 .case-head {
   position: relative;
   overflow: clip;
-  background: var(--accent);
-  color: var(--accent-ink);
+  background: color-mix(in srgb, var(--accent) 60%, #0b0d0e);
+  color: var(--case-ink);
   padding: calc(var(--header-h) + clamp(2rem, 5vh, 3.5rem)) var(--gutter) clamp(8rem, 18vw, 16rem);
 }
 .case-head__top {
@@ -696,14 +697,14 @@
   justify-content: space-between;
   gap: 1rem;
   padding-bottom: 0.9rem;
-  border-bottom: 1px solid color-mix(in srgb, var(--accent-ink) 28%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--case-ink) 28%, transparent);
   font-family: var(--f-mono);
   font-size: var(--t-2xs);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--accent-ink) 78%, transparent);
+  color: color-mix(in srgb, var(--case-ink) 82%, transparent);
 }
-.case-head__back { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent-ink); }
+.case-head__back { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--case-ink); }
 .case-head__back-arrow { width: 0.9rem; height: 0.9rem; rotate: 180deg; }
 .case-head__main { margin-top: clamp(3rem, 8vh, 6rem); }
 .case-head__title {
@@ -715,7 +716,7 @@
   text-transform: uppercase;
   margin-left: -0.04em;
 }
-.case-head__dot { color: var(--accent-ink); opacity: 0.5; }
+.case-head__dot { color: var(--case-ink); opacity: 0.5; }
 .case-head__tagline {
   margin-top: clamp(1.5rem, 3vh, 2.5rem);
   max-width: 22ch;
@@ -732,7 +733,7 @@
   gap: clamp(2rem, 6vw, 6rem);
   margin-top: clamp(3rem, 7vh, 5rem);
   padding-top: 1.2rem;
-  border-top: 1px solid color-mix(in srgb, var(--accent-ink) 28%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--case-ink) 28%, transparent);
 }
 .case-head__summary {
   max-width: 48ch;
@@ -745,11 +746,11 @@
   grid-template-columns: 4.5rem minmax(0, 1fr);
   gap: 1rem;
   padding-block: 0.6rem;
-  border-top: 1px solid color-mix(in srgb, var(--accent-ink) 22%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--case-ink) 22%, transparent);
   font-size: var(--t-xs);
 }
-.case-facts > div:last-child { border-bottom: 1px solid color-mix(in srgb, var(--accent-ink) 22%, transparent); }
-.case-facts dt { color: color-mix(in srgb, var(--accent-ink) 65%, transparent); }
+.case-facts > div:last-child { border-bottom: 1px solid color-mix(in srgb, var(--case-ink) 22%, transparent); }
+.case-facts dt { color: color-mix(in srgb, var(--case-ink) 82%, transparent); }
 .case-facts dd { line-height: 1.45; }
 .case-facts__link dd a {
   display: inline-flex;
@@ -800,7 +801,7 @@
   font-size: clamp(2.6rem, 5vw, 5rem);
   line-height: 0.88;
   letter-spacing: -0.04em;
-  color: var(--accent);
+  color: color-mix(in srgb, var(--accent) 75%, #0b0d0e);
 }
 .case-metric p {
   margin-top: 0.8rem;
@@ -837,7 +838,7 @@
   line-height: 1.35;
   color: var(--c-muted);
 }
-.case-rail li span { font-family: var(--f-mono); font-size: 0.58rem; color: var(--accent); }
+.case-rail li span { font-family: var(--f-mono); font-size: 0.58rem; color: color-mix(in srgb, var(--accent) 70%, #0b0d0e); }
 .case-rail__link {
   display: inline-flex;
   align-items: center;
@@ -856,7 +857,7 @@
   display: grid;
   gap: clamp(4rem, 9vh, 7rem);
 }
-.case-block__kicker { color: var(--accent); }
+.case-block__kicker { color: color-mix(in srgb, var(--accent) 70%, #0b0d0e); }
 .case-block h2 {
   margin-top: 0.8rem;
   font-family: var(--f-display);
@@ -922,10 +923,10 @@
 
 .case-outcome {
   padding: clamp(4rem, 10vh, 8rem) var(--gutter);
-  background: var(--accent);
-  color: var(--accent-ink);
+  background: color-mix(in srgb, var(--accent) 60%, #0b0d0e);
+  color: var(--case-ink);
 }
-.case-outcome .label { color: color-mix(in srgb, var(--accent-ink) 65%, transparent); }
+.case-outcome .label { color: color-mix(in srgb, var(--case-ink) 82%, transparent); }
 .case-outcome blockquote {
   margin-top: 1.5rem;
   max-width: 26ch;
@@ -943,8 +944,8 @@
   align-items: end;
   gap: 1.5rem;
   padding: clamp(4rem, 9vh, 7rem) var(--gutter);
-  background: var(--accent);
-  color: var(--accent-ink);
+  background: color-mix(in srgb, var(--accent) 60%, #0b0d0e);
+  color: var(--case-ink);
   overflow: clip;
 }
 .case-next__label {
@@ -953,7 +954,7 @@
   font-size: var(--t-2xs);
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--accent-ink) 65%, transparent);
+  color: color-mix(in srgb, var(--case-ink) 82%, transparent);
 }
 .case-next__title {
   grid-column: 1 / 2;
@@ -971,7 +972,7 @@
   margin-top: 1.2rem;
   font-size: var(--t-s);
   line-height: 1.5;
-  color: color-mix(in srgb, var(--accent-ink) 78%, transparent);
+  color: color-mix(in srgb, var(--case-ink) 85%, transparent);
 }
 .case-next__arrow {
   grid-column: 2 / 3;
@@ -1064,7 +1065,7 @@
   font-family: var(--f-mono);
   font-size: 0.46rem;
   letter-spacing: 0.08em;
-  color: #7a7a72;
+  color: #5f5f59;
 }
 .report__track { height: 4px; background: rgb(10 10 10 / 0.1); }
 .report__track span { display: block; height: 100%; background: var(--accent); }

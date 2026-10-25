@@ -1,0 +1,119 @@
+# GenRec AI — full site context
+
+> GenRec AI is a product studio in Tamil Nadu, India. We design and engineer AI products, web apps and internal tools for teams that cannot afford a bad day.
+
+This file gives AI assistants and search systems a complete, factual summary of the studio and its published case studies. Every page below is server-rendered and publicly accessible.
+
+## Studio
+
+GenRec AI is a three-person product studio founded in 2023 and based in Tamil Nadu, India. We work worldwide. The studio keeps strategy, interface design and engineering in the same small room: the people who scope a build are the people who ship it.
+
+We take one build at a time. The process has four moves:
+
+1. Find the failure. A week of questions and one page of failure modes; we agree on what the system has to survive before design starts.
+2. Cut the scope. We remove until only the load-bearing parts remain, so the first release is the smallest thing that can carry real work.
+3. Build in the open. A working link from the first week, so the client sees the real thing on a real screen.
+4. Stay for the test. Launch starts the hard part; we watch the first weeks, fix what the demo hid, and leave the system runnable.
+
+### Team
+
+- Jai Samyukth B U — Strategy and product. Turns a business problem into a short, honest build plan.
+- Shyamnath Sankar — Operations and scale. Keeps the build, the budget and the people in the same room.
+- Harish V — Technical lead. Owns the architecture and the parts that fail when nobody is watching.
+
+### Services
+
+- Product strategy: scope, sequence and the one decision that makes the build smaller.
+- Interface design: screens that hold up on a phone, a tablet and a bad connection.
+- Full-stack engineering: web apps, APIs and the plumbing between them.
+- AI systems: retrieval, evaluation and human review, with models where they earn their place.
+- Data and infrastructure: schemas, queues, deploys and the quiet parts that keep a system up.
+- Rescue and handover: taking over a stalled build, or leaving one a team can run.
+
+### Contact
+
+- Email: hello@genrecai.com
+- LinkedIn: https://www.linkedin.com/company/genrecai
+- Location: Tamil Nadu, India
+- Working: worldwide
+
+## Case study: SelectStar
+
+URL: https://www.genrecai.com/work/selectstar
+Sector: AI and data tools
+Year: 2026
+Status: Live, open source under the MIT licence
+Live product: https://selectstar.genrecai.com
+
+SelectStar is an open-source agentic database analyst. A user asks a question in plain English and six specialised agents write the SQL, profile the data, build charts and run models.
+
+The problem: most AI data tools wrap a language model around a ReAct loop. The model decides which tool to call repeatedly until it thinks it is done. That is flexible, and wrong for a database: queries wander, writes depend on a prompt, and a missing join can look like a confident answer.
+
+The build: SelectStar classifies intent before writing SQL. A Router reads the question once, picks the agents that are needed and hands them a deterministic path. EDA, Viz and ML fork-join in parallel after a SELECT. Synthesis is the only agent allowed to write prose. One retry on failure, then a clean error. The SQL agent is the only agent that can touch the database. Zen mode intercepts writes at the graph edge and waits for a person.
+
+The interface: a question about orders can produce a query, a profile, a chart and a forecast. The canvas is a working surface, not a chat log; each artifact is typed, exportable and sits beside the answer that references it. In Classic Mode, a spreadsheet and its in-memory SQLite tables are the same object, so editing a cell changes the next query live.
+
+The result: on the same questions, the graph completes 94% of tasks versus about 72% for a ReAct loop, finishes in 7.4 seconds end to end, and uses 45% fewer tokens through scoped agent context. Its failure modes are legible: an error has a place to live and a write has a person in front of it.
+
+## Case study: LuminaIQ
+
+URL: https://www.genrecai.com/work/luminaiq
+Sector: AI and education
+Year: 2026
+Status: Live, 12,000+ learners
+Live product: https://www.luminaiq.fun
+
+LuminaIQ is an AI study platform that turns a textbook into a prerequisite-ordered learning path, cited answers, quizzes, notes and flashcards. It is built for the night before the exam.
+
+The problem: students do not need another chat box. They need a plan: what to learn first, what carries the most marks, what they have already forgotten. A textbook has a structure; a chat window does not. Re-reading feels productive and teaches very little.
+
+The build: upload a PDF, DOCX or TXT. LuminaIQ extracts the text, chunks it, embeds it and builds a knowledge graph of topics and prerequisites. Every tool works from that same layer: cited chat, auto-generated quizzes, four kinds of notes, 3D flashcards, mindmaps, a visual lab and a spaced-repetition scheduler. Exam Tonight mode weighs coverage against prerequisite depth and builds a plan for the hours left. The SM-2 scheduler brings a card back just before it would be forgotten.
+
+The interface: a single column, generous type and one clear next action. Progress is visible without turning learning into a slot machine.
+
+The result: more than 12,000 learners and 50,000 documents turned into study kits. Time from upload to first quiz is under 30 seconds, and the product supports a return habit through streaks, spaced reviews and a path that always has a next step.
+
+## Case study: Tabble
+
+URL: https://www.genrecai.com/work/tabble
+Sector: Hospitality and commerce
+Year: 2026
+Status: Live, founding cohort open
+Live product: https://www.tabble.in
+
+Tabble is QR ordering and a live kitchen display for restaurants. Guests scan, order and pay from the table; every ticket lands in the kitchen the moment they tap.
+
+The problem: on a Friday at nine, the kitchen is not the bottleneck. Everything between a guest deciding to order and the kitchen hearing about it is. A party waits for a free waiter, a modification is shouted across the room, and the bill takes three laps. Every hand-off between pad, POS and kitchen is a place to lose the ticket.
+
+The build: a photo-first menu behind a QR code on the table, with no app and no sign-up. Guests add dishes, leave a note for the kitchen and pay by UPI when ready. The order appears on a live kitchen display on any tablet or browser the restaurant already owns. Menus, modifiers, sold-out states and prices update live; guest notes reach the chef unedited with the table number attached.
+
+The interface: the kitchen screen is a queue of tickets with one job each: read the table, read the items, mark it served. Large type, high contrast, no nested menus. The guest side borrows the language of a menu, not a checkout.
+
+The result: the first fifty restaurants lock founding pricing for life. There is no new hardware, no app install and no commission on orders. The product does one loop well, from a guest's thumb to the chef's screen.
+
+## Case study: VSB Feedback
+
+URL: https://www.genrecai.com/work/vsb-feedback
+Sector: Education and internal tools
+Year: 2024
+Status: Internal deployment at VSB Engineering College
+
+VSB Feedback is a faculty feedback system for VSB Engineering College. Students rate ten teaching parameters once per term; HODs and administrators get clean, department-level reports.
+
+The problem: end-of-term feedback arrived on paper, was counted by hand and reached departments weeks later. Low response rates weakened the averages, duplicate and missing submissions were invisible until report day, and the report was a document rather than a decision tool.
+
+The build: students sign in with their college registration number and rate each faculty member across ten parameters. One submission per student is enforced at the database. Administrators map staff to subjects manually or by Excel upload, add students in bulk and generate reports. HODs see their own department: averages, faculty performance and a non-submission list. Registration numbers are encrypted at rest.
+
+The interface: the feedback screen is mobile-first and short: one faculty member at a time, ten clear rows, colour-coded ratings that say what a score means. Administration screens are dense where they need to be, with tables, bulk actions and visible state.
+
+The result: the system replaced the paper loop for the college. Departments can see participation while the window is open, chase the gaps, and walk into a review with the same numbers everyone else has.
+
+## Technical notes
+
+- The site is built with Next.js and server-renders all page content.
+- Canonical host: https://www.genrecai.com
+- Sitemap: https://www.genrecai.com/sitemap.xml
+- Robots: https://www.genrecai.com/robots.txt
+- AI crawlers including GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot and PerplexityBot are allowed.
+
+Last updated: 2026-10-25
