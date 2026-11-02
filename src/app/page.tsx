@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Arrow } from '@/components/Arrow';
+import { Approach } from '@/components/Approach';
 import { JsonLd } from '@/components/JsonLd';
 import PageReady from '@/components/PageReady';
 import { LoadBeam } from '@/components/LoadBeam';
@@ -182,6 +183,8 @@ export default function HomePage() {
           </p>
         </div>
       </section>
+
+      <Approach />
 
       <JsonLd data={homeSchema} />
       <PageReady />
