@@ -1,4 +1,4 @@
-import { founders, otherWork, projects, services, site, team, type Project } from '@/data/site';
+import { founders, otherWork, projects, services, site, team, type Project, type Service } from '@/data/site';
 
 export const SITE_URL = site.url.replace(/\/$/, '');
 export const ORGANIZATION_ID = `${SITE_URL}/#organization`;
@@ -58,8 +58,10 @@ export const organizationSchema = {
       '@type': 'Offer',
       itemOffered: {
         '@type': 'Service',
-        name: service.title,
+        '@id': `${SITE_URL}/services/${service.slug}#service`,
+        name: service.seoTitle,
         description: service.text,
+        url: `${SITE_URL}/services/${service.slug}`,
         provider: { '@id': ORGANIZATION_ID },
       },
     })),
@@ -299,6 +301,79 @@ export function caseStudySchema(project: Project) {
         { name: 'Home', path: '/' },
         { name: 'Work', path: '/work' },
         { name: project.title, path },
+      ]),
+    ],
+  };
+}
+
+export const servicesSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      ...webPageSchema({
+        path: '/services',
+        name: `Services — ${site.name}`,
+        description:
+          'Website design, custom software development, AI workflows, AI agents and custom CRM by GenrecAI.',
+      }),
+      '@type': 'CollectionPage',
+    },
+    {
+      '@type': 'ItemList',
+      '@id': `${absoluteUrl('/services')}#list`,
+      itemListElement: services.map((service, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: service.seoTitle,
+        url: absoluteUrl(`/services/${service.slug}`),
+      })),
+    },
+    breadcrumbSchema([
+      { name: 'Home', path: '/' },
+      { name: 'Services', path: '/services' },
+    ]),
+  ],
+};
+
+export function serviceSchema(service: Service) {
+  const path = `/services/${service.slug}`;
+  const url = absoluteUrl(path);
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      webPageSchema({ path, name: `${service.seoTitle} — ${site.name}`, description: service.seoDescription }),
+      {
+        '@type': 'Service',
+        '@id': `${url}#service`,
+        name: service.seoTitle,
+        alternateName: service.title,
+        serviceType: service.seoTitle,
+        description: service.seoDescription,
+        url,
+        provider: { '@id': ORGANIZATION_ID },
+        areaServed: 'Worldwide',
+        hasOfferCatalog: {
+          '@type': 'OfferCatalog',
+          name: `${service.seoTitle} deliverables`,
+          itemListElement: service.deliverables.map((d) => ({
+            '@type': 'Offer',
+            itemOffered: { '@type': 'Service', name: d.title, description: d.text },
+          })),
+        },
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': `${url}#faq`,
+        mainEntity: service.faqs.map((f) => ({
+          '@type': 'Question',
+          name: f.q,
+          acceptedAnswer: { '@type': 'Answer', text: f.a },
+        })),
+      },
+      breadcrumbSchema([
+        { name: 'Home', path: '/' },
+        { name: 'Services', path: '/services' },
+        { name: service.seoTitle, path },
       ]),
     ],
   };

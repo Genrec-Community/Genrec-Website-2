@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Arrow } from '@/components/Arrow';
-import { Approach } from '@/components/Approach';
 import { JsonLd } from '@/components/JsonLd';
 import PageReady from '@/components/PageReady';
 import { LoadBeam } from '@/components/LoadBeam';
@@ -73,9 +72,94 @@ export default function HomePage() {
         <LoadBeam />
       </section>
 
+      <section className="capabilities" id="capabilities" aria-labelledby="capabilities-title">
+        <div className="cap-marquee" aria-hidden="true">
+          <div className="cap-marquee__track">
+            {Array.from({ length: 2 }).map((_, i) => (
+              <span key={i}>
+                {services.map((service) => (
+                  <span key={service.short}>
+                    {service.short} <i>·</i>{' '}
+                  </span>
+                ))}
+              </span>
+            ))}
+          </div>
+        </div>
+        <div className="cap__inner">
+          <div className="cap__head">
+            <p className="label">01 / Services</p>
+            <h2 className="cap__title" id="capabilities-title" data-reveal="up">
+              Five services.
+              <br />
+              {' '}
+              One team<span className="dot">.</span>
+            </h2>
+            <p className="cap__note">
+              No handoff between a strategy deck and the people writing the code. The team that built
+              Tabble, LuminaIQ and HailBrowser builds yours, from the first sketch to the last deploy.
+            </p>
+            <Link href="/services" className="text-link text-link--big arrow-link cap__all">
+              All services
+              <Arrow />
+            </Link>
+          </div>
+          <ol className="cap__list">
+            {services.map((c, i) => (
+              <li key={c.slug} className="cap__item" data-reveal="up">
+                <span className="cap__num">{String(i + 1).padStart(2, '0')}</span>
+                <h3>
+                  <Link href={`/services/${c.slug}`} className="cap__link">
+                    {c.title}
+                    <Arrow className="cap__arrow" />
+                  </Link>
+                </h3>
+                <p>{c.text}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className="studio-teaser" aria-labelledby="studio-teaser-title">
+        <div className="studio-teaser__media" data-parallax="0.08">
+          <Image
+            src="/img/studio.jpg"
+            alt="A quiet studio room with a long table and large windows"
+            fill
+            sizes="(max-width: 900px) 100vw, 50vw"
+            className="studio-teaser__img"
+          />
+          <span className="studio-teaser__tag">The room / Tamil Nadu</span>
+        </div>
+        <div className="studio-teaser__body">
+          <p className="label">02 / The studio</p>
+          <h2 className="studio-teaser__title" id="studio-teaser-title" data-reveal="up">
+            Small by design<span className="dot">.</span>
+          </h2>
+          <p className="studio-teaser__lede" data-reveal="up">
+            Founded by Shyamnath Sankar and Jai Samyukth B U. One build at a time, close enough to the
+            code that the handover is a conversation, not a document.
+          </p>
+          <div className="founders">
+            {founders.map((f) => (
+              <a key={f.url} className="founder-link" href={f.url} target="_blank" rel="noopener">
+                {f.name}
+                <Arrow />
+                <span className="sr-only"> (personal site, opens in a new tab)</span>
+              </a>
+            ))}
+          </div>
+          <Link href="/studio" className="text-link text-link--big arrow-link">
+            Meet the studio
+            <Arrow />
+          </Link>
+        </div>
+      </section>
+
       <section className="section work" id="work" aria-labelledby="work-title">
         <div className="section-head section-head--wide">
-          <p className="label section-head__label">01 / Selected work</p>
+          <p className="label section-head__label">03 / Products and open source</p>
           <h2 className="section-head__title section-head__title--xl" id="work-title" data-reveal="up">
             Made to be
             <br />
@@ -99,83 +183,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="capabilities" id="capabilities" aria-labelledby="capabilities-title">
-        <div className="cap-marquee" aria-hidden="true">
-          <div className="cap-marquee__track">
-            {Array.from({ length: 2 }).map((_, i) => (
-              <span key={i}>
-                {services.map((service) => (
-                  <span key={service.short}>
-                    {service.short} <i>·</i>{' '}
-                  </span>
-                ))}
-              </span>
-            ))}
-          </div>
-        </div>
-        <div className="cap__inner">
-          <div className="cap__head">
-            <p className="label">02 / Services</p>
-            <h2 className="cap__title" id="capabilities-title" data-reveal="up">
-              Five services.
-              <br />
-              {' '}
-              One team<span className="dot">.</span>
-            </h2>
-            <p className="cap__note">
-              No handoff between a strategy deck and the people writing the code. The team that built
-              Tabble, LuminaIQ and HailBrowser builds yours, from the first sketch to the last deploy.
-            </p>
-          </div>
-          <ol className="cap__list">
-            {services.map((c, i) => (
-              <li key={c.title} className="cap__item" data-reveal="up">
-                <span className="cap__num">{String(i + 1).padStart(2, '0')}</span>
-                <h3>{c.title}</h3>
-                <p>{c.text}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      <Approach />
-
-      <section className="studio-teaser" aria-labelledby="studio-teaser-title">
-        <div className="studio-teaser__media" data-parallax="0.08">
-          <Image
-            src="/img/studio.jpg"
-            alt="A quiet studio room with a long table and large windows"
-            fill
-            sizes="(max-width: 900px) 100vw, 50vw"
-            className="studio-teaser__img"
-          />
-          <span className="studio-teaser__tag">The room / Tamil Nadu</span>
-        </div>
-        <div className="studio-teaser__body">
-          <p className="label">03 / The studio</p>
-          <h2 className="studio-teaser__title" id="studio-teaser-title" data-reveal="up">
-            Small by design<span className="dot">.</span>
-          </h2>
-          <p className="studio-teaser__lede" data-reveal="up">
-            Founded by Shyamnath Sankar and Jai Samyukth B U. One build at a time, close enough to the
-            code that the handover is a conversation, not a document.
-          </p>
-          <div className="founders">
-            {founders.map((f) => (
-              <a key={f.url} className="founder-link" href={f.url} target="_blank" rel="noopener">
-                {f.name}
-                <Arrow />
-                <span className="sr-only"> (personal site, opens in a new tab)</span>
-              </a>
-            ))}
-          </div>
-          <Link href="/studio" className="text-link text-link--big arrow-link">
-            Meet the studio
-            <Arrow />
-          </Link>
-        </div>
-      </section>
       <JsonLd data={homeSchema} />
       <PageReady />
     </>

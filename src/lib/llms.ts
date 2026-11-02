@@ -21,7 +21,7 @@ const identity = [
   '',
   '## Services',
   '',
-  ...services.map((s) => `- ${s.title}: ${s.text}`),
+  ...services.map((s) => `- [${s.seoTitle}](${site.url}/services/${s.slug}): ${s.text}`),
 ];
 
 const contact = [
@@ -51,6 +51,7 @@ export function llmsTxt() {
     '## Pages',
     '',
     `- [Home](${url('/')}): Services, products, open source and the studio.`,
+    `- [Services](${url('/services')}): Websites, software, AI workflows, AI agents and custom CRM.`,
     `- [Work](${url('/work')}): Products, open source and other work, with case studies.`,
     `- [Studio](${url('/studio')}): The founders, the team and how a build runs.`,
     `- [Full context](${url('/llms-full.txt')}): Every case study in plain text.`,
@@ -97,6 +98,17 @@ export function llmsFullTxt() {
     '',
     ...team.map((t) => `- ${t.name}, ${t.role}: ${t.line}${t.url ? ` Personal site: ${t.url}` : ''}`),
     '',
+    ...services.flatMap((s) => [
+      `## Service: ${s.seoTitle}`,
+      '',
+      `URL: ${url(`/services/${s.slug}`)}`,
+      '',
+      `${s.headline} ${s.lede}`,
+      '',
+      ...s.deliverables.map((d) => `- ${d.title}: ${d.text}`),
+      '',
+      ...s.faqs.flatMap((f) => [`Q: ${f.q}`, `A: ${f.a}`, '']),
+    ]),
     ...cases,
     '## Other work',
     '',

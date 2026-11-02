@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { Arrow } from '@/components/Arrow';
 import { JsonLd } from '@/components/JsonLd';
 import PageReady from '@/components/PageReady';
-import { TopographicField } from '@/components/TopographicField';
 import { WorkIndex } from '@/components/WorkIndex';
 import { otherWork, projects, projectsByKind, site } from '@/data/site';
 import { workSchema } from '@/lib/seo';
@@ -51,7 +50,6 @@ export default function WorkPage() {
   return (
     <>
       <section className="work-hero" aria-labelledby="work-title">
-        <TopographicField className="work-hero__topo" tone="paper" />
         <p className="label work-hero__label">Work index / 2024 to 2026</p>
         <div className="work-hero__grid">
           <h1 id="work-title" data-reveal="up" data-intro>

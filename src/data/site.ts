@@ -79,6 +79,7 @@ export const founders = [
 ];
 
 export const nav = [
+  { label: 'Services', href: '/services' },
   { label: 'Work', href: '/work' },
   { label: 'Studio', href: '/studio' },
 ];
@@ -98,33 +99,192 @@ export const principles = [
   },
 ];
 
-export const services = [
+export type Service = {
+  slug: string;
+  title: string;
+  short: string;
+  text: string;
+  headline: string;
+  lede: string;
+  seoTitle: string;
+  seoDescription: string;
+  keywords: string[];
+  deliverables: { title: string; text: string }[];
+  steps: { title: string; text: string }[];
+  fit: string[];
+  proof: string[];
+  faqs: { q: string; a: string }[];
+};
+
+export const services: Service[] = [
   {
+    slug: 'websites',
     title: 'Websites that stop the scroll',
     short: 'Websites',
     text: 'Fast, beautiful marketing sites and launch pages with motion, real copy and the SEO done properly from day one.',
+    headline: 'Websites people remember.',
+    lede: 'Marketing sites, launch pages and portfolios with a real point of view. Designed, written and engineered by the same team, then checked in a real browser before anyone sees them.',
+    seoTitle: 'Website design and development',
+    seoDescription:
+      'GenrecAI designs and builds fast, beautiful websites with motion, real copy and SEO done properly. Next.js sites for startups, products and studios.',
+    keywords: ['website design', 'website development', 'Next.js website', 'landing page design', 'SEO website', 'web design agency India'],
+    deliverables: [
+      { title: 'A concept, not a template', text: 'One idea taken from your business, carried through type, layout and motion.' },
+      { title: 'Copy that sounds like you', text: 'Specific words about what you do, written with you, never placeholder text.' },
+      { title: 'Motion with a reason', text: 'Page transitions, scroll moments and hover states that make the site feel built, not assembled.' },
+      { title: 'SEO from the first commit', text: 'Metadata, structured data, sitemaps, share images and fast pages, so search engines and AI answers find you.' },
+      { title: 'Phone first', text: 'A layout composed for a 390 pixel screen, not a squeezed desktop.' },
+      { title: 'A site you can edit', text: 'Content in one place, deployed on Vercel, handed over with a short guide.' },
+    ],
+    steps: [
+      { title: 'Brief and concept', text: 'One call, three concepts, one direction you sign off.' },
+      { title: 'Design and copy', text: 'Every page designed with real words, on a phone and a laptop.' },
+      { title: 'Build and QA', text: 'Built in Next.js, then screenshotted, audited for accessibility and speed, and fixed.' },
+      { title: 'Launch and search', text: 'Domain, analytics, Search Console and a sitemap on day one.' },
+    ],
+    fit: ['A startup launching a product', 'A studio or agency that needs to look the part', 'A founder who wants to rank for their own name'],
+    proof: ['luminaiq', 'hailbrowser'],
+    faqs: [
+      { q: 'How long does a website take?', a: 'A focused marketing site usually takes two to four weeks from brief to launch.' },
+      { q: 'Which stack do you use?', a: 'Next.js on Vercel by default, or the stack your team already runs.' },
+      { q: 'Will it rank on Google?', a: 'We ship the technical SEO properly: fast pages, metadata, structured data and a sitemap. Rankings then depend on your content and links, and we tell you which levers matter.' },
+    ],
   },
   {
+    slug: 'software-development',
     title: 'Software development',
     short: 'Software',
     text: 'Web apps, mobile apps, APIs and internal tools, designed and engineered by the same people.',
+    headline: 'Software that holds on a bad day.',
+    lede: 'Web apps, mobile apps, APIs and internal tools. We scope it small, ship a working link in the first week and stay through the first weeks of real use.',
+    seoTitle: 'Custom software development',
+    seoDescription:
+      'GenrecAI builds custom web apps, mobile apps, APIs and internal tools. Product, design and engineering in one team, from first sketch to production.',
+    keywords: ['custom software development', 'web app development', 'mobile app development', 'MVP development', 'internal tools', 'software company Tamil Nadu'],
+    deliverables: [
+      { title: 'A scope that fits the date', text: 'We write down how the system fails first, then cut to the parts that carry real work.' },
+      { title: 'Web and mobile apps', text: 'Next.js, React, Flutter and the APIs behind them.' },
+      { title: 'Data and infrastructure', text: 'Postgres, queues, payments, auth and deploys that stay up.' },
+      { title: 'Interfaces people finish', text: 'Screens designed for a phone, a tablet and a bad connection.' },
+      { title: 'Rescue', text: 'We take over a stalled build, stabilise it and finish it.' },
+      { title: 'Handover', text: 'Code, docs and the reasoning behind the decisions, so your team can run it.' },
+    ],
+    steps: [
+      { title: 'Find the failure', text: 'A week of questions and one page of failure modes.' },
+      { title: 'Cut the scope', text: 'The first release is the smallest thing that survives real users.' },
+      { title: 'Build in the open', text: 'A working link from week one, updated as we go.' },
+      { title: 'Stay for the test', text: 'We watch the first weeks in production and fix what the demo hid.' },
+    ],
+    fit: ['An MVP that has to survive real users', 'A business replacing a spreadsheet with software', 'A team with a stalled build'],
+    proof: ['tabble', 'vsb-feedback'],
+    faqs: [
+      { q: 'Do you build mobile apps?', a: 'Yes. Flutter for cross-platform apps, or a mobile-first web app when an install would get in the way.' },
+      { q: 'Can you take over an existing codebase?', a: 'Yes. We start with a short audit, stabilise what is breaking, then continue the build.' },
+      { q: 'Who owns the code?', a: 'You do. Everything is in your repository from day one.' },
+    ],
   },
   {
+    slug: 'ai-workflows',
     title: 'AI workflows',
     short: 'AI workflows',
     text: 'The repetitive work in your business, rebuilt as a pipeline: documents in, decisions and reports out, a person where it matters.',
+    headline: 'The boring work, done by a pipeline.',
+    lede: 'Documents in, decisions and reports out. We rebuild repetitive work as an AI workflow with retrieval, checks and a person at the steps that need judgement.',
+    seoTitle: 'AI workflow automation',
+    seoDescription:
+      'GenrecAI builds AI workflows that automate document processing, reporting and repetitive work, with retrieval, evaluation and human review built in.',
+    keywords: ['AI workflow automation', 'AI automation company', 'document processing AI', 'RAG pipeline', 'business process automation', 'LLM integration'],
+    deliverables: [
+      { title: 'A map of the work', text: 'Which steps are rules, which need a model, and which need a person.' },
+      { title: 'Retrieval over your documents', text: 'Answers that cite the page they came from, built on a vector index of your files.' },
+      { title: 'Checks, not trust', text: 'Every model output is validated before it moves on. Failures go to a queue, not a customer.' },
+      { title: 'Human review where it matters', text: 'Approval steps for money, writes and anything that cannot be undone.' },
+      { title: 'Any model', text: 'OpenAI, Anthropic, Gemini or open models running on your own hardware.' },
+      { title: 'Numbers you can read', text: 'Time saved, error rate and cost per run on one dashboard.' },
+    ],
+    steps: [
+      { title: 'Shadow the work', text: 'We sit with the people doing it and write down every step.' },
+      { title: 'Prototype on real data', text: 'A working pipeline on last month’s documents within days.' },
+      { title: 'Evaluate', text: 'We measure accuracy against your own answers before anything goes live.' },
+      { title: 'Roll out', text: 'Run beside the old process, then replace it when the numbers agree.' },
+    ],
+    fit: ['Teams buried in PDFs, forms and email', 'Operations with a weekly report someone builds by hand', 'Support teams answering the same questions'],
+    proof: ['luminaiq', 'selectstar'],
+    faqs: [
+      { q: 'Is our data safe?', a: 'We can run on your cloud account or with local models, and we never train on your data.' },
+      { q: 'What if the model is wrong?', a: 'Outputs are checked against rules and confidence thresholds, and uncertain cases go to a person.' },
+      { q: 'How fast can we see results?', a: 'A prototype on your real data usually takes one to two weeks.' },
+    ],
   },
   {
+    slug: 'ai-agents',
     title: 'AI agents at work',
     short: 'AI agents',
     text: 'Agents that use your browser, your database and your tools, with every step visible and a stop button in reach.',
+    headline: 'Agents that do the clicking.',
+    lede: 'AI agents that work in your browser, your database and your tools. We built HailBrowser and SelectStar, so we know where agents break and how to keep a person in control.',
+    seoTitle: 'AI agent development',
+    seoDescription:
+      'GenrecAI builds AI agents for business: browser agents, data agents and MCP integrations, with every step visible and a person in control. Makers of HailBrowser.',
+    keywords: ['AI agent development', 'AI agents for business', 'browser automation agent', 'MCP server development', 'agentic AI', 'LLM agents'],
+    deliverables: [
+      { title: 'Browser agents', text: 'Agents that log into your portals, fill forms and collect reports in a real, signed-in browser.' },
+      { title: 'Data agents', text: 'Ask your database in plain English and get SQL, charts and answers you can check.' },
+      { title: 'MCP servers', text: 'Your tools exposed to Claude, Cursor and other agents through the Model Context Protocol.' },
+      { title: 'Graphs, not loops', text: 'Deterministic paths with one job per agent, so failures have a place to live.' },
+      { title: 'Visible and stoppable', text: 'Every step logged, every write gated, and a stop button the whole time.' },
+      { title: 'Scheduled jobs', text: 'Agents that run every morning and tell you what changed.' },
+    ],
+    steps: [
+      { title: 'Pick one job', text: 'A task your team does every day that has a clear right answer.' },
+      { title: 'Build the agent', text: 'Tools, guardrails and a test harness of real examples.' },
+      { title: 'Benchmark', text: 'We publish pass rate, speed and false completions before launch.' },
+      { title: 'Hand over the controls', text: 'Your team sees every step and can stop or correct it.' },
+    ],
+    fit: ['Teams that copy data between web portals', 'Analysts waiting on SQL', 'Developers who want their coding agent to use real tools'],
+    proof: ['hailbrowser', 'selectstar'],
+    faqs: [
+      { q: 'How is this different from a chatbot?', a: 'A chatbot answers. An agent acts: it opens pages, runs queries and finishes the task, and shows you each step.' },
+      { q: 'Can an agent make mistakes?', a: 'Yes, so we design for it: writes need approval, every step is logged and the agent reports when it is stuck instead of pretending.' },
+      { q: 'Do you build MCP servers?', a: 'Yes. HailBrowser ships an MCP server with 18 browser tools, and we build custom ones for your systems.' },
+    ],
   },
   {
+    slug: 'custom-crm',
     title: 'Custom CRM',
     short: 'Custom CRM',
     text: 'A CRM shaped around how your team already sells, with roles, reports and the spreadsheet finally retired.',
+    headline: 'A CRM shaped like your team.',
+    lede: 'Off-the-shelf CRMs make your team work their way. We build one around how you already sell and serve: your stages, your roles, your reports, and the spreadsheet finally retired.',
+    seoTitle: 'Custom CRM development',
+    seoDescription:
+      'GenrecAI builds custom CRMs around how your team sells: pipelines, roles, permissions, reports and AI features, replacing spreadsheets for good.',
+    keywords: ['custom CRM development', 'CRM software', 'build a CRM', 'sales pipeline software', 'CRM for small business', 'replace spreadsheets'],
+    deliverables: [
+      { title: 'Your pipeline, your stages', text: 'Leads, deals, follow-ups and handoffs that match how your team works today.' },
+      { title: 'Roles and permissions', text: 'Each person sees what they need, with an audit trail of who changed what.' },
+      { title: 'Import everything', text: 'Your spreadsheets and old exports brought in with duplicates caught.' },
+      { title: 'Reports that answer questions', text: 'Pipeline, conversion and team performance without rebuilding a sheet.' },
+      { title: 'AI where it helps', text: 'Call notes summarised, next steps suggested and leads scored from your own history.' },
+      { title: 'Integrations', text: 'Email, WhatsApp, payments and the tools you already pay for.' },
+    ],
+    steps: [
+      { title: 'Map the sale', text: 'We follow one deal from first contact to paid and write down every step.' },
+      { title: 'Design the screens', text: 'The three views your team will open every day, designed first.' },
+      { title: 'Migrate and build', text: 'Your data moved in early, so testing happens on real records.' },
+      { title: 'Train and stay', text: 'A short session for the team, then we watch the first month.' },
+    ],
+    fit: ['Sales teams living in spreadsheets', 'Businesses outgrowing a generic CRM', 'Teams with a process no off-the-shelf tool fits'],
+    proof: ['vsb-feedback', 'tabble'],
+    faqs: [
+      { q: 'Why not just use an existing CRM?', a: 'If one fits, use it. We build custom when your process does not fit, or per-seat pricing stops making sense.' },
+      { q: 'Can you move our existing data?', a: 'Yes. We import spreadsheets and exports, catch duplicates and check the totals with you.' },
+      { q: 'Do we own it?', a: 'Yes. The code, the data and the hosting account are yours.' },
+    ],
   },
 ];
+
+export const serviceBySlug = (slug: string) => services.find((s) => s.slug === slug);
 
 export const team: { name: string; role: string; line: string; url?: string; host?: string }[] = [
   {
