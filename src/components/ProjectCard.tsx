@@ -41,7 +41,6 @@ export function ProjectCard({
       onPointerMove={onMove}
       data-reveal="up"
       data-delay={String(index * 0.07)}
-      aria-label={`${project.title}, ${project.sector}, ${project.year}`}
     >
       <div className="pcard__media" ref={mediaRef}>
         <span className="pcard__index">{String(index + 1).padStart(2, '0')}</span>

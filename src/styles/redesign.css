@@ -1,5 +1,5 @@
 /* ============================================================
-   GENREC AI: selected work / studio / case studies
+   GENRECAI: selected work / studio / case studies
    ============================================================ */
 
 /* ---------- Chrome ---------- */
@@ -124,8 +124,8 @@
 .hero--dark .beam { position: relative; z-index: 2; margin-top: clamp(2.4rem, 6vh, 4.5rem); }
 .hero--dark .beam__frame { height: clamp(5.5rem, 13vh, 9rem); }
 .hero--dark .btn--accent {
-  background: var(--c-accent);
-  border-color: var(--c-accent);
+  background: var(--c-accent-text);
+  border-color: var(--c-accent-text);
   color: #fff5f1;
 }
 .hero--dark .btn--accent .btn__fill { background: var(--c-fg); }
@@ -490,7 +490,7 @@
   padding-block: clamp(1.1rem, 2.4vh, 1.6rem);
   border-bottom: 1px solid var(--c-line);
 }
-.cap__num { font-family: var(--f-mono); font-size: var(--t-2xs); color: var(--c-accent); }
+.cap__num { font-family: var(--f-mono); font-size: var(--t-2xs); color: var(--c-accent-text); }
 .cap__item h3 {
   font-family: var(--f-display);
   font-weight: 500;
@@ -1238,7 +1238,7 @@
   border-right: 1px solid var(--c-line);
 }
 .team-card:last-child { border-right: 0; }
-.team-card__num { font-family: var(--f-mono); font-size: var(--t-2xs); color: var(--c-accent); }
+.team-card__num { font-family: var(--f-mono); font-size: var(--t-2xs); color: var(--c-accent-text); }
 .team-card h3 {
   margin-top: 2.5rem;
   font-family: var(--f-display);
@@ -1252,7 +1252,7 @@
   font-size: var(--t-xs);
   font-weight: 600;
   letter-spacing: 0.02em;
-  color: var(--c-accent);
+  color: var(--c-accent-text);
 }
 .team-card__line {
   margin-top: 0.9rem;
@@ -1277,7 +1277,7 @@
 }
 .process-step:nth-child(odd) { border-right: 1px solid var(--c-line); padding-right: clamp(1.5rem, 3vw, 2.5rem); }
 .process-step:nth-child(even) { padding-left: clamp(1.5rem, 3vw, 2.5rem); }
-.process-step__num { font-family: var(--f-mono); font-size: var(--t-2xs); color: var(--c-accent); }
+.process-step__num { font-family: var(--f-mono); font-size: var(--t-2xs); color: var(--c-accent-text); }
 .process-step h3 {
   margin-top: 2rem;
   font-family: var(--f-display);

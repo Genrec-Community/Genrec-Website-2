@@ -112,7 +112,7 @@ export function Header() {
   return (
     <>
       <header className="site-header">
-        <Link href="/" className="brand" aria-label={`${site.name} home`}>
+        <Link href="/" className="brand" aria-label={`${site.wordmark} home`}>
           {site.wordmark}
           <span className="brand__dot" aria-hidden="true" />
         </Link>

@@ -37,6 +37,54 @@ const cards = [
     foot: '2026 / MIT / by GenrecAI',
     shot: 'public/shots/hailbrowser-hero.png',
   },
+  {
+    out: 'public/og/selectstar.png',
+    accent: '#2DD4BF',
+    label: 'AI / Data tools / Open source',
+    title: 'SelectStar',
+    sub: 'Talk to your database in plain English.',
+    foot: '2026 / MIT / by GenrecAI',
+    shot: 'public/shots/selectstar-hero.png',
+  },
+  {
+    out: 'public/og/tabble.png',
+    accent: '#EA580C',
+    label: 'Hospitality / Commerce / Product',
+    title: 'Tabble',
+    sub: 'Every table becomes your best waiter.',
+    foot: '2026 / QR ordering and kitchen display / by GenrecAI',
+    shot: 'public/shots/tabble-hero.png',
+  },
+  {
+    out: 'public/og/vsb-feedback.png',
+    accent: '#3B82F6',
+    label: 'Education / Internal tools / Other work',
+    title: 'VSB Feedback',
+    size: 92,
+    sub: 'Feedback that reaches the people who can act on it.',
+    foot: '2024 / VSB Engineering College / by GenrecAI',
+    shot: 'public/img/campus.jpg',
+  },
+  {
+    out: 'public/og/work.png',
+    accent: '#E23A1F',
+    label: 'GenrecAI / Work',
+    title: 'The<br>work',
+    sub: 'Products, open source and other work: Tabble, LuminaIQ, SelectStar, HailBrowser.',
+    foot: 'genrecai.com / work',
+    shot: 'public/shots/luminaiq-hero.png',
+    big: true,
+  },
+  {
+    out: 'public/og/studio.png',
+    accent: '#E23A1F',
+    label: 'GenrecAI / Studio',
+    title: 'Small by<br>design',
+    sub: 'Founded by Shyamnath Sankar and Jai Samyukth B U.',
+    foot: 'genrecai.com / Tamil Nadu, India',
+    shot: 'public/img/studio.jpg',
+    big: true,
+  },
 ];
 
 const html = (c) => `<!doctype html><html><head><meta charset="utf-8"><style>
@@ -52,7 +100,7 @@ body{width:1200px;height:630px;background:#0b0c0b;color:#f0eee7;position:relativ
 .label i{width:11px;height:11px;background:${c.accent};display:block}
 .mark{position:absolute;right:64px;top:58px;font-family:Clash;font-size:21px;letter-spacing:.02em}
 .mark b{color:${c.accent}}
-h1{position:absolute;left:60px;top:${c.big ? 100 : 104}px;font-family:Clash;font-weight:600;font-size:${c.big ? 128 : 112}px;line-height:.86;letter-spacing:-.04em;max-width:${c.big ? 700 : 760}px}
+h1{position:absolute;left:60px;top:${c.big ? 100 : 104}px;font-family:Clash;font-weight:600;font-size:${c.size ?? (c.big ? 128 : 112)}px;line-height:.86;letter-spacing:-.04em;max-width:${c.big ? 700 : 760}px}
 h1 b{color:${c.accent}}
 .sub{position:absolute;left:64px;top:${c.big ? 330 : 228}px;font-size:28px;line-height:1.3;color:#d9d8d2;max-width:${c.big ? 520 : 560}px}
 .foot{position:absolute;left:64px;bottom:44px;font-family:Mono;font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:#a5a6a0;max-width:${c.big ? 560 : 600}px;line-height:1.6}
@@ -64,7 +112,7 @@ h1 b{color:${c.accent}}
 </style></head><body>
 <div class="bg"></div><div class="bar"></div>
 <p class="label"><i></i>${c.label}</p>
-<p class="mark">GENREC<b>.</b></p>
+<p class="mark">GENRECAI<b>.</b></p>
 <h1>${c.title}<b>.</b></h1>
 <p class="sub">${c.sub}</p>
 <p class="foot">${c.foot}</p>

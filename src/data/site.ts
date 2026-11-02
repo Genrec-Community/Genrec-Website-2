@@ -48,7 +48,7 @@ export type Project = {
 export const site = {
   name: 'GenrecAI',
   altNames: ['GenRec AI', 'Genrec AI', 'Genrec', 'genrecai.com'],
-  wordmark: 'GENREC',
+  wordmark: 'GENRECAI',
   role: 'Software and AI studio',
   url: 'https://www.genrecai.com',
   domain: 'genrecai.com',

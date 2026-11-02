@@ -1,5 +1,5 @@
 /* ============================================================
-   GENREC AI: site styles
+   GENRECAI: site styles
    ============================================================ */
 
 html {
@@ -889,7 +889,7 @@ body {
   margin-top: clamp(3.5rem, 11vh, 8rem);
   font-family: var(--f-display);
   font-weight: 600;
-  font-size: clamp(4rem, 19vw, 20rem);
+  font-size: clamp(3rem, 14.2vw, 15rem);
   line-height: 0.72;
   letter-spacing: -0.045em;
   text-transform: uppercase;
@@ -914,7 +914,7 @@ body {
   .footer__email { grid-column: 1 / 13; }
   .footer__note { grid-column: 1 / 13; }
   .footer__meta { grid-column: 1 / 13; justify-items: start; }
-  .footer__word { font-size: clamp(3.6rem, 19vw, 9rem); }
+  .footer__word { font-size: clamp(2.6rem, 14vw, 7rem); }
 }
 
 /* ---------- Cover (procedural specimen) ---------- */
