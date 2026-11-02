@@ -3,7 +3,7 @@ import { mkdirSync } from 'node:fs';
 
 mkdirSync('public/shots', { recursive: true });
 
-const browser = await chromium.launch({ headless: true, args: ['--no-sandbox'] });
+const browser = await chromium.launch({ headless: true, args: ['--no-sandbox'], executablePath: process.env.CHROMIUM_PATH || undefined });
 
 async function shoot(url, slug, opts = {}) {
   const page = await browser.newPage({
@@ -11,7 +11,7 @@ async function shoot(url, slug, opts = {}) {
     deviceScaleFactor: 1,
     reducedMotion: 'reduce',
   });
-  await page.goto(url, { waitUntil: 'load', timeout: 60000 }).catch(() => {});
+  await page.goto(url, { waitUntil: 'networkidle', timeout: 60000 }).catch(() => {});
   await page.waitForTimeout(4500);
   await page.evaluate(() => window.scrollTo(0, 1));
   await page.waitForTimeout(500);
@@ -31,7 +31,7 @@ async function shoot(url, slug, opts = {}) {
       deviceScaleFactor: 2,
       reducedMotion: 'reduce',
     });
-    await m.goto(url, { waitUntil: 'load', timeout: 60000 }).catch(() => {});
+    await m.goto(url, { waitUntil: 'networkidle', timeout: 60000 }).catch(() => {});
     await m.waitForTimeout(4000);
     await m.screenshot({ path: `public/shots/${slug}-mobile.png`, animations: 'disabled' });
     await m.close();
@@ -50,7 +50,11 @@ await shoot('https://www.tabble.in/', 'tabble', {
   mobile: true,
 });
 await shoot('https://www.luminaiq.fun/', 'luminaiq', {
-  sections: [['features', 1400], ['steps', 3100]],
+  sections: [['loop', 2000], ['features', 3650], ['app', 5900]],
+  mobile: true,
+});
+await shoot('https://hailbrowser.genrecai.com/', 'hailbrowser', {
+  sections: [['benchmark', 1950], ['panel', 2950], ['modes', 4350]],
   mobile: true,
 });
 

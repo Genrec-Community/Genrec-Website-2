@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { nav, site } from '@/data/site';
+import { founders, nav, site } from '@/data/site';
 import { Arrow } from './Arrow';
 
 export function Footer() {
@@ -27,13 +27,23 @@ export function Footer() {
           </a>
           <span>{site.location}</span>
         </div>
+        <div className="footer__meta footer__founders">
+          <span>Founders</span>
+          {founders.map((f) => (
+            <a key={f.url} href={f.url} target="_blank" rel="noopener">
+              {f.name}
+            </a>
+          ))}
+        </div>
       </div>
       <div className="footer__word" aria-hidden="true">
         {site.wordmark}
         <span className="dot">.</span>
       </div>
       <div className="footer__bottom">
-        <span>© {site.name}</span>
+        <span>
+          © {site.name} / {site.domain}
+        </span>
         <span>Clash Display, General Sans, Martian Mono</span>
         <span>Built in Next.js</span>
       </div>

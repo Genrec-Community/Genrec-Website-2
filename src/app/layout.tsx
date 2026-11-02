@@ -7,36 +7,51 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { JsonLd } from '@/components/JsonLd';
 import { Motion } from '@/components/Motion';
-import { site } from '@/data/site';
-import { organizationSchema, websiteSchema } from '@/lib/seo';
+import { founders, site } from '@/data/site';
+import { founderSchemas, organizationSchema, websiteSchema } from '@/lib/seo';
+
+const homeTitle = `${site.name} (GenRec AI) — Websites, software and AI agents studio`;
+const homeDescription =
+  'GenrecAI (GenRec AI) at genrecai.com: websites, software, AI workflows, AI agents and custom CRM. Founded by Shyamnath Sankar and Jai Samyukth B U.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — ${site.role} for software that holds`,
-    template: `%s / ${site.name}`,
+    default: homeTitle,
+    template: `%s | ${site.name}`,
   },
-  description:
-    'GenRec AI is a product studio in Tamil Nadu. We design and engineer AI products, web apps and internal tools for teams that cannot afford a bad day.',
+  description: homeDescription,
   category: 'technology',
   applicationName: site.name,
   keywords: [
-    'product studio',
-    'product design',
-    'web engineering',
-    'AI systems',
-    'India',
+    'GenrecAI',
+    'Genrec AI',
     'GenRec AI',
+    'genrecai.com',
+    'Genrec',
+    'Shyamnath Sankar',
+    'Jai Samyukth',
+    'website design',
+    'software development',
+    'AI workflows',
+    'AI agents',
+    'custom CRM',
+    'Tabble',
+    'LuminaIQ',
+    'SelectStar',
+    'HailBrowser',
+    'Tamil Nadu',
+    'India',
   ],
-  authors: [{ name: site.name, url: site.url }],
+  authors: founders.map((f) => ({ name: f.name, url: f.url })),
   creator: site.name,
+  publisher: site.name,
   alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
     siteName: site.name,
-    title: `${site.name} — ${site.role} for software that holds`,
-    description:
-      'A product studio in Tamil Nadu designing and engineering AI products, web apps and internal tools for teams that cannot afford a bad day.',
+    title: homeTitle,
+    description: homeDescription,
     url: '/',
     locale: 'en_IN',
     images: [
@@ -44,18 +59,30 @@ export const metadata: Metadata = {
         url: '/og.png',
         width: 1200,
         height: 630,
-        alt: 'GenRec AI, product studio for software that holds',
+        alt: 'GenrecAI, software and AI studio',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${site.name} — ${site.role} for software that holds`,
-    description:
-      'A product studio in Tamil Nadu designing and engineering AI products, web apps and internal tools for teams that cannot afford a bad day.',
+    title: homeTitle,
+    description: homeDescription,
     images: ['/og.png'],
   },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
+  },
+  ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? { verification: { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION } }
+    : {}),
 };
 
 export const viewport: Viewport = {
@@ -67,12 +94,12 @@ export const viewport: Viewport = {
 
 const siteSchema = {
   '@context': 'https://schema.org',
-  '@graph': [organizationSchema, websiteSchema],
+  '@graph': [organizationSchema, websiteSchema, ...founderSchemas],
 };
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en-IN" suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{

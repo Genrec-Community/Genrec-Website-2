@@ -1,13 +1,15 @@
 import type { MetadataRoute } from 'next';
 import { projects, site } from '@/data/site';
 
-const lastModified = new Date('2026-10-25');
+const lastModified = new Date('2026-11-02');
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: site.url,
+      url: `${site.url}/`,
       lastModified,
+      changeFrequency: 'weekly',
+      priority: 1,
       images: [`${site.url}/og.png`],
     },
     {

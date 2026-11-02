@@ -6,7 +6,7 @@ import { JsonLd } from '@/components/JsonLd';
 import PageReady from '@/components/PageReady';
 import { LoadBeam } from '@/components/LoadBeam';
 import { WorkIndex } from '@/components/WorkIndex';
-import { capabilities, projects, site } from '@/data/site';
+import { founders, otherWork, projects, services, site } from '@/data/site';
 import { homeSchema } from '@/lib/seo';
 
 export default function HomePage() {
@@ -41,9 +41,10 @@ export default function HomePage() {
         <div className="hero__inner">
           <p className="hero__kicker" data-reveal="fade" data-intro>
             <i className="hero__pulse" />
-            Four builds. Three live. One college system.
+            Websites, software, AI workflows and agents
           </p>
           <h1 className="hero__title" id="hero-title" data-reveal="fade" data-intro data-delay="0.1">
+            <span className="sr-only">{site.name}: </span>
             We build
             <br />
             {' '}
@@ -53,8 +54,8 @@ export default function HomePage() {
           </h1>
           <div className="hero__foot">
             <p className="hero__lede" data-reveal="up" data-intro data-delay="0.3">
-              A product studio for teams that cannot afford a bad day. Strategy, interface and
-              engineering, in one small room.
+              {site.name} is a software and AI studio. We build stunning websites, custom software,
+              AI workflows, AI agents and CRMs, and we run our own products.
             </p>
             <div className="hero__actions" data-reveal="fade" data-intro data-delay="0.45">
               <Link href="/work" className="btn btn--accent" data-fill>
@@ -82,18 +83,19 @@ export default function HomePage() {
             depended on<span className="dot">.</span>
           </h2>
           <p className="section-head__note">
-            Four systems, each tested against the day it was built for: a database owner with a
-            question, a student with an exam tomorrow, a restaurant at nine on a Friday, a college
-            chasing feedback.
+            Two products we run ourselves, two open-source tools anyone can fork, and the client
+            systems and experiments in between. Each one tested against the day it was built for.
           </p>
         </div>
-        <WorkIndex />
+        <WorkIndex level={3} />
         <div className="work__foot">
           <Link href="/work" className="text-link text-link--big arrow-link">
             All work
             <Arrow />
           </Link>
-          <p className="work__count">04 builds / 2024 to 2026</p>
+          <p className="work__count">
+            {String(projects.length + otherWork.length).padStart(2, '0')} builds / 2024 to 2026
+          </p>
         </div>
       </section>
 
@@ -102,28 +104,31 @@ export default function HomePage() {
           <div className="cap-marquee__track">
             {Array.from({ length: 2 }).map((_, i) => (
               <span key={i}>
-                Product strategy <i>·</i> Interface design <i>·</i> Full-stack engineering <i>·</i> AI
-                systems <i>·</i> Data and infrastructure <i>·</i> Rescue and handover <i>·</i>
+                {services.map((service) => (
+                  <span key={service.short}>
+                    {service.short} <i>·</i>{' '}
+                  </span>
+                ))}
               </span>
             ))}
           </div>
         </div>
         <div className="cap__inner">
           <div className="cap__head">
-            <p className="label">02 / What we carry</p>
+            <p className="label">02 / Services</p>
             <h2 className="cap__title" id="capabilities-title" data-reveal="up">
-              Six disciplines.
+              Five services.
               <br />
               {' '}
               One team<span className="dot">.</span>
             </h2>
             <p className="cap__note">
-              No handoff between a strategy deck and the people writing the code. The same three
-              people carry a build from the first sketch to the last deploy.
+              No handoff between a strategy deck and the people writing the code. The team that built
+              Tabble, LuminaIQ and HailBrowser builds yours, from the first sketch to the last deploy.
             </p>
           </div>
           <ol className="cap__list">
-            {capabilities.map((c, i) => (
+            {services.map((c, i) => (
               <li key={c.title} className="cap__item" data-reveal="up">
                 <span className="cap__num">{String(i + 1).padStart(2, '0')}</span>
                 <h3>{c.title}</h3>
@@ -153,9 +158,18 @@ export default function HomePage() {
             Small by design<span className="dot">.</span>
           </h2>
           <p className="studio-teaser__lede" data-reveal="up">
-            Three people, one build at a time. We stay close enough to the code that the handover is
-            a conversation, not a document.
+            Founded by Shyamnath Sankar and Jai Samyukth B U. One build at a time, close enough to the
+            code that the handover is a conversation, not a document.
           </p>
+          <div className="founders">
+            {founders.map((f) => (
+              <a key={f.url} className="founder-link" href={f.url} target="_blank" rel="noopener">
+                {f.name}
+                <Arrow />
+                <span className="sr-only"> (personal site, opens in a new tab)</span>
+              </a>
+            ))}
+          </div>
           <Link href="/studio" className="text-link text-link--big arrow-link">
             Meet the studio
             <Arrow />

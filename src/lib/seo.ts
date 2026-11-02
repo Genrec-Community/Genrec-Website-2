@@ -1,58 +1,112 @@
-import { projects, site, team, type Project } from '@/data/site';
+import { founders, otherWork, projects, services, site, team, type Project } from '@/data/site';
 
 export const SITE_URL = site.url.replace(/\/$/, '');
 export const ORGANIZATION_ID = `${SITE_URL}/#organization`;
 export const WEBSITE_ID = `${SITE_URL}/#website`;
+export const founderId = (url: string) => `${url.replace(/\/$/, '')}/#person`;
 
 export const absoluteUrl = (path = '/') =>
   path.startsWith('http') ? path : `${SITE_URL}${path.startsWith('/') ? path : `/${path}`}`;
 
 export const organizationSchema = {
-  '@type': 'Organization',
+  '@type': ['Organization', 'ProfessionalService'],
   '@id': ORGANIZATION_ID,
   name: site.name,
-  alternateName: site.wordmark,
+  alternateName: site.altNames,
+  legalName: site.name,
   url: SITE_URL,
   logo: {
     '@type': 'ImageObject',
+    '@id': `${SITE_URL}/#logo`,
     url: absoluteUrl('/logo.png'),
     width: 512,
     height: 512,
+    caption: site.name,
   },
   image: absoluteUrl('/og.png'),
   description: site.description,
+  disambiguatingDescription: `${site.name} is the software and AI studio at ${site.domain}, founded by ${founders
+    .map((f) => f.name)
+    .join(' and ')}. It makes Tabble, LuminaIQ, SelectStar and HailBrowser.`,
+  slogan: 'We build what holds.',
   email: site.email,
-  foundingDate: '2023',
+  foundingDate: site.foundingDate,
+  founder: founders.map((f) => ({ '@id': founderId(f.url) })),
+  numberOfEmployees: { '@type': 'QuantitativeValue', value: team.length },
   address: {
     '@type': 'PostalAddress',
     addressRegion: 'Tamil Nadu',
     addressCountry: 'IN',
   },
   areaServed: 'Worldwide',
+  priceRange: '$$',
   knowsAbout: [
-    'Product strategy',
-    'Interface design',
-    'Full-stack engineering',
-    'AI systems',
-    'Data and infrastructure',
-    'Software rescue and handover',
+    'Website design and development',
+    'Software development',
+    'AI workflows',
+    'AI agents',
+    'Browser agents',
+    'Model Context Protocol (MCP)',
+    'Retrieval-augmented generation',
+    'Custom CRM development',
+    'Next.js',
   ],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: `${site.name} services`,
+    itemListElement: services.map((service) => ({
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: service.title,
+        description: service.text,
+        provider: { '@id': ORGANIZATION_ID },
+      },
+    })),
+  },
+  owns: projects
+    .filter((p) => p.kind !== 'other')
+    .map((p) => ({
+      '@type': 'SoftwareApplication',
+      '@id': `${SITE_URL}/work/${p.slug}#software`,
+      name: p.title,
+      description: p.summary,
+      applicationCategory: p.sector,
+      operatingSystem: 'Web',
+      ...(p.live ? { url: p.live.href } : {}),
+      ...(p.repo ? { sameAs: [p.repo] } : {}),
+    })),
   sameAs: site.socials.map((social) => social.href),
   contactPoint: {
     '@type': 'ContactPoint',
     email: site.email,
     contactType: 'sales',
-    availableLanguage: ['en'],
+    areaServed: 'Worldwide',
+    availableLanguage: ['en', 'ta'],
   },
 };
+
+export const founderSchemas = founders.map((f) => ({
+  '@type': 'Person',
+  '@id': founderId(f.url),
+  name: f.name,
+  url: f.url,
+  jobTitle: `${f.role}, ${site.name}`,
+  description: `${f.role} of ${site.name}. ${f.focus}.`,
+  worksFor: { '@id': ORGANIZATION_ID },
+  affiliation: { '@id': ORGANIZATION_ID },
+  sameAs: [f.url, ...(f.github ? [f.github] : [])],
+}));
 
 export const websiteSchema = {
   '@type': 'WebSite',
   '@id': WEBSITE_ID,
-  url: SITE_URL,
+  url: `${SITE_URL}/`,
   name: site.name,
+  alternateName: site.altNames,
   description: site.description,
   publisher: { '@id': ORGANIZATION_ID },
+  copyrightHolder: { '@id': ORGANIZATION_ID },
   inLanguage: 'en-IN',
 };
 
@@ -117,7 +171,7 @@ export const homeSchema = {
   '@graph': [
     webPageSchema({
       path: '/',
-      name: 'GenRec AI — Product studio for software that holds',
+      name: `${site.name} (GenRec AI) — Websites, software and AI agents studio`,
       description: site.description,
     }),
     itemListSchema(
@@ -127,6 +181,16 @@ export const homeSchema = {
         path: `/work/${project.slug}`,
       })),
     ),
+    {
+      '@type': 'ItemList',
+      '@id': `${SITE_URL}/#services`,
+      name: `${site.name} services`,
+      itemListElement: services.map((service, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: service.title,
+      })),
+    },
   ],
 };
 
@@ -136,19 +200,22 @@ export const workSchema = {
     {
       ...webPageSchema({
         path: '/work',
-        name: 'Selected builds — GenRec AI case studies',
+        name: `Products and open source — ${site.name}`,
         description:
-          'Four systems built by GenRec AI: SelectStar, LuminaIQ, Tabble and the VSB faculty feedback system.',
+          'Products, open source and client work by GenrecAI: Tabble, LuminaIQ, SelectStar, HailBrowser, VSB Feedback and Mobile Agent.',
         image: '/og/work.png',
       }),
       '@type': 'CollectionPage',
     },
     itemListSchema(
       '/work',
-      projects.map((project) => ({
-        name: project.title,
-        path: `/work/${project.slug}`,
-      })),
+      [
+        ...projects.map((project) => ({
+          name: project.title,
+          path: `/work/${project.slug}`,
+        })),
+        ...otherWork.map((item) => ({ name: item.title, path: item.href })),
+      ],
     ),
   ],
 };
@@ -159,15 +226,16 @@ export const studioSchema = {
     {
       ...webPageSchema({
         path: '/studio',
-        name: 'Studio — GenRec AI',
+        name: `Studio and founders — ${site.name}`,
         description:
-          'GenRec AI is a product studio in Tamil Nadu, India. Three people who scope, design and engineer one build at a time.',
+          'GenrecAI is a software and AI studio in Tamil Nadu, India, founded by Shyamnath Sankar and Jai Samyukth B U.',
         image: '/og/studio.png',
       }),
       '@type': 'AboutPage',
     },
     ...team.map((person) => ({
       '@type': 'Person',
+      ...(person.url ? { '@id': founderId(person.url), url: person.url } : {}),
       name: person.name,
       jobTitle: person.role,
       description: person.line,
@@ -187,7 +255,7 @@ export function caseStudySchema(project: Project) {
       {
         ...webPageSchema({
           path,
-          name: `${project.title} case study — GenRec AI`,
+          name: `${project.title} case study — ${site.name}`,
           description: project.summary,
           image: `/og/${project.slug}.png`,
         }),
@@ -214,11 +282,15 @@ export function caseStudySchema(project: Project) {
         ],
         about: {
           '@type': 'SoftwareApplication',
+          '@id': `${url}#software`,
           name: project.title,
           description: project.summary,
-          applicationCategory: 'BusinessApplication',
+          applicationCategory: project.sector,
           operatingSystem: 'Web',
+          creator: { '@id': ORGANIZATION_ID },
           ...(project.live ? { url: project.live.href } : {}),
+          ...(project.repo ? { sameAs: [project.repo] } : {}),
+          ...(project.kind === 'open-source' ? { license: 'https://opensource.org/licenses/MIT', isAccessibleForFree: true } : {}),
         },
         isPartOf: { '@id': WEBSITE_ID },
         inLanguage: 'en-IN',

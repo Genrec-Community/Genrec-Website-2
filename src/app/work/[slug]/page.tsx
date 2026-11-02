@@ -50,7 +50,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
           url: `/og/${project.slug}.png`,
           width: 1200,
           height: 630,
-          alt: `${project.title}, a case study by GenRec AI`,
+          alt: `${project.title}, a case study by ${site.name}`,
         },
       ],
     },
@@ -92,7 +92,9 @@ export default async function CasePage({ params }: Props) {
             <Arrow className="case-head__back-arrow" />
             Work
           </Link>
-          <span>Case {num} / 04</span>
+          <span>
+            Case {num} / {String(projects.length).padStart(2, '0')}
+          </span>
           <span>
             {project.sector} / {project.year}
           </span>
@@ -125,6 +127,17 @@ export default async function CasePage({ params }: Props) {
               <dt>Status</dt>
               <dd>{project.status}</dd>
             </div>
+            {project.repo ? (
+              <div className="case-facts__link">
+                <dt>Source</dt>
+                <dd>
+                  <a href={project.repo} target="_blank" rel="noopener noreferrer">
+                    {project.repo.replace('https://', '')}
+                    <Arrow />
+                  </a>
+                </dd>
+              </div>
+            ) : null}
             {project.live ? (
               <div className="case-facts__link">
                 <dt>Live</dt>

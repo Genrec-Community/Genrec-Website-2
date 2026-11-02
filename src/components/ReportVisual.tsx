@@ -16,7 +16,7 @@ export function ReportVisual({ compact = false }: { compact?: boolean }) {
         <div className="report__head">
           <div>
             <p>Department report</p>
-            <h3>Computer Science</h3>
+            <p className="report__title">Computer Science</p>
           </div>
           <div className="report__rate">
             <b>87%</b>

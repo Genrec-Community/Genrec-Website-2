@@ -7,7 +7,18 @@ import { BrowserFrame } from './BrowserFrame';
 import { ReportVisual } from './ReportVisual';
 import { Arrow } from './Arrow';
 
-export function ProjectCard({ project, index, priority }: { project: Project; index: number; priority?: boolean }) {
+export function ProjectCard({
+  project,
+  index,
+  priority,
+  headingLevel = 2,
+}: {
+  project: Project;
+  index: number;
+  priority?: boolean;
+  headingLevel?: 2 | 3 | 4;
+}) {
+  const Title = `h${headingLevel}` as 'h2' | 'h3' | 'h4';
   const mediaRef = useRef<HTMLDivElement>(null);
   const onMove = (event: PointerEvent<HTMLAnchorElement>) => {
     const media = mediaRef.current;
@@ -55,7 +66,7 @@ export function ProjectCard({ project, index, priority }: { project: Project; in
           <span>{project.year}</span>
         </div>
         <div className="pcard__title-row">
-          <h2 className="pcard__title">{project.title}</h2>
+          <Title className="pcard__title">{project.title}</Title>
           <span className="pcard__arrow">
             <Arrow />
           </span>

@@ -4,43 +4,44 @@ import Link from 'next/link';
 import { Arrow } from '@/components/Arrow';
 import { JsonLd } from '@/components/JsonLd';
 import PageReady from '@/components/PageReady';
-import { needs, site, team } from '@/data/site';
+import { needs, projects, site, team } from '@/data/site';
 import { studioSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Studio',
   description:
-    'GenRec AI is a product studio in Tamil Nadu, India. Three people who scope, design and engineer one build at a time, from first sketch to final deploy.',
+    'GenrecAI (GenRec AI), founded by Shyamnath Sankar and Jai Samyukth B U. A software and AI studio in Tamil Nadu building websites, AI agents and CRMs.',
   keywords: [
-    'GenRec AI studio',
-    'product studio Tamil Nadu',
-    'product strategy',
-    'interface design',
-    'full-stack engineering',
-    'AI systems',
-    'software rescue',
+    'GenrecAI',
+    'GenRec AI',
+    'GenrecAI founders',
+    'Shyamnath Sankar',
+    'Jai Samyukth',
+    'software studio Tamil Nadu',
+    'AI agents',
+    'custom CRM',
   ],
   alternates: { canonical: '/studio' },
   openGraph: {
     type: 'website',
-    title: 'Small by design — the GenRec AI studio',
+    title: 'Small by design — the GenrecAI studio',
     description:
-      'Three people who stay on the build from the first sketch to the last deploy. Product strategy, interface design, engineering and AI systems.',
+      'GenrecAI is founded by Shyamnath Sankar and Jai Samyukth B U. The people who stay on the build from the first sketch to the last deploy.',
     url: '/studio',
     images: [
       {
         url: '/og/studio.png',
         width: 1200,
         height: 630,
-        alt: 'The GenRec AI studio',
+        alt: 'The GenrecAI studio',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Small by design — the GenRec AI studio',
+    title: 'Small by design — the GenrecAI studio',
     description:
-      'Three people who scope, design and engineer one build at a time, from first sketch to final deploy.',
+      'GenrecAI, founded by Shyamnath Sankar and Jai Samyukth B U. Websites, software, AI workflows, agents and CRMs.',
     images: ['/og/studio.png'],
   },
 };
@@ -89,8 +90,9 @@ export default function StudioPage() {
           </h1>
           <div className="studio-hero__foot">
             <p data-reveal="up" data-intro data-delay="0.2">
-              GenRec AI is a product studio in Tamil Nadu. Three people who stay on the build from
-              the first sketch to the last deploy.
+              {site.name} is a software and AI studio in Tamil Nadu, founded by Shyamnath Sankar and
+              Jai Samyukth B U. The people who stay on the build from the first sketch to the last
+              deploy.
             </p>
             <dl data-reveal="fade" data-intro data-delay="0.35">
               <div>
@@ -99,7 +101,7 @@ export default function StudioPage() {
               </div>
               <div>
                 <dt>Model</dt>
-                <dd>Product studio</dd>
+                <dd>Software and AI</dd>
               </div>
               <div>
                 <dt>Base</dt>
@@ -137,7 +139,7 @@ export default function StudioPage() {
             <span>people, no bench</span>
           </div>
           <div>
-            <b>04</b>
+            <b>{String(projects.length).padStart(2, '0')}</b>
             <span>products in the world</span>
           </div>
           <div>
@@ -168,6 +170,13 @@ export default function StudioPage() {
               <h3>{t.name}</h3>
               <p className="team-card__role">{t.role}</p>
               <p className="team-card__line">{t.line}</p>
+              {t.url ? (
+                <a className="team-card__site" href={t.url} target="_blank" rel="noopener">
+                  {t.host}
+                  <Arrow />
+                  <span className="sr-only"> (personal site, opens in a new tab)</span>
+                </a>
+              ) : null}
             </li>
           ))}
         </ul>
